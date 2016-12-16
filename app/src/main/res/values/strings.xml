@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Agent</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="Orders">Заказы</string>
+    <string name="Bids">Заявки</string>
+    <string name="Returns">Возврат</string>
+    <string name="Totals">Итоги</string>
+    <string name="Nomenclatures">Номенклатура</string>
+    <string name="Customers">Контрагенты</string>
+    <string name="Settings">Настройка</string>
+</resources>

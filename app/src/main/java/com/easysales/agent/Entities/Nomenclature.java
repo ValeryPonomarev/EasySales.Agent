@@ -1,4 +1,4 @@
-package easysales.agent.Entities;
+package com.easysales.agent.Entities;
 
 import android.media.Image;
 

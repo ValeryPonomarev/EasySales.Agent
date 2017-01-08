@@ -1,4 +1,4 @@
-package easysales.agent.Entities;
+package com.easysales.agent.Entities;
 
 import android.database.Cursor;
 
@@ -9,7 +9,7 @@ import easysales.androidorm.Entity.IEntityFactory;
 /**
  * Created by drmiller on 16.12.2016.
  */
-public class OrderFactory implements IEntityFactory<Order> {
+public class OrderFactory implements IEntityFactory<OrderDoc> {
 
     public static class FieldNames
     {
@@ -24,8 +24,8 @@ public class OrderFactory implements IEntityFactory<Order> {
     }
 
     @Override
-    public Order BuildEntity(Cursor cursor) {
-        Order order = new Order(cursor.getInt(cursor.getColumnIndex(FieldNames.Key)));
+    public OrderDoc BuildEntity(Cursor cursor) {
+        OrderDoc order = new OrderDoc(cursor.getInt(cursor.getColumnIndex(FieldNames.Key)));
         order.setNumber(cursor.getString(cursor.getColumnIndex(FieldNames.Number)));
         order.setDate(new Date(cursor.getLong(cursor.getColumnIndex(FieldNames.Date))));
         order.setType(OrderType.valueOf(cursor.getInt(cursor.getColumnIndex(FieldNames.Type))));

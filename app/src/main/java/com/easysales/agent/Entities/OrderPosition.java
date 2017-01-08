@@ -1,4 +1,4 @@
-package easysales.agent.Entities;
+package com.easysales.agent.Entities;
 
 import easysales.androidorm.Entity.Entity;
 
@@ -7,7 +7,7 @@ import easysales.androidorm.Entity.Entity;
  */
 public class OrderPosition extends Entity {
 
-    private Order order;
+    private OrderDoc order;
     private Nomenclature nomenclature;
     private double price;
     private int count;
@@ -16,11 +16,11 @@ public class OrderPosition extends Entity {
         super(key);
     }
 
-    public Order getOrder() {
+    public OrderDoc getOrder() {
         return order;
     }
 
-    public void setOrder(Order order) {
+    public void setOrder(OrderDoc order) {
         this.order = order;
     }
 

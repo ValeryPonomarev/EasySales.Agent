@@ -1,4 +1,4 @@
-package easysales.agent.Entities;
+package com.easysales.agent.Entities;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -12,7 +12,7 @@ public enum OrderType {
     private int value;
     private static Map map = new HashMap<>();
 
-    private OrderType(int value)
+    OrderType(int value)
     {
         this.value = value;
     }

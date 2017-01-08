@@ -1,18 +1,22 @@
-package easysales.agent.Repositories;
+package com.easysales.agent.Repositories;
 
 import android.content.ContentValues;
 import android.content.Context;
 
-import easysales.agent.Entities.EntityFactoryBuilder;
-import easysales.agent.Entities.Order;
-import easysales.agent.Entities.OrderFactory;
+import com.easysales.agent.Entities.OrderFactory;
+
+import java.util.List;
+
+import com.easysales.agent.Entities.EntityFactoryBuilder;
+import com.easysales.agent.Entities.OrderDoc;
+
 import easysales.androidorm.Entity.IEntityFactoryBuilder;
 import easysales.androidorm.Repository.RepositoryDB;
 
 /**
  * Created by drmiller on 16.12.2016.
  */
-public class OrderRepository extends RepositoryDB<Order> {
+public class OrderRepository extends RepositoryDB<OrderDoc> {
 
     public OrderRepository(Context context)
     {
@@ -21,7 +25,7 @@ public class OrderRepository extends RepositoryDB<Order> {
 
     @Override
     protected String GetTableName() {
-        return "Customer";
+        return "OrderDoc";
     }
 
     @Override
@@ -40,12 +44,12 @@ public class OrderRepository extends RepositoryDB<Order> {
 
     @Override
     protected String GetTableUpdateQuery() {
-        return "DROP TABLE IF EXISTS " + GetTableName();
+        return String.format("DROP TABLE IF EXISTS `%1$s`", GetTableName());
     }
 
     @Override
     protected String GetBaseQuery() {
-        return "SELECT * FROM " + GetTableName();
+        return String.format("SELECT * FROM `%1$s`", GetTableName());
     }
 
     @Override
@@ -54,40 +58,53 @@ public class OrderRepository extends RepositoryDB<Order> {
     }
 
     @Override
-    protected void PersistNewItem(Order entity) {
+    protected void PersistNewItem(OrderDoc entity) {
         ContentValues values = new ContentValues();
         values.put(OrderFactory.FieldNames.Number, entity.getNumber());
         values.put(OrderFactory.FieldNames.Date, entity.getDate().getTime());
         values.put(OrderFactory.FieldNames.Type, entity.getType().getValue());
         values.put(OrderFactory.FieldNames.State, entity.getState().getValue());
-        values.put(OrderFactory.FieldNames.Customer, (int)entity.getCustomer().getKey());
-        values.put(OrderFactory.FieldNames.LocationLatitude, entity.getLocation().getLatitude());
-        values.put(OrderFactory.FieldNames.LocationLongitude, entity.getLocation().getLongitude());
+        if(entity.getCustomer() != null){
+            values.put(OrderFactory.FieldNames.Customer, (int)entity.getCustomer().getKey());
+        }
 
-        GetDatabase().insert(GetTableName(), null, values);
+        if(entity.getLocation() != null) {
+            values.put(OrderFactory.FieldNames.LocationLatitude, entity.getLocation().getLatitude());
+            values.put(OrderFactory.FieldNames.LocationLongitude, entity.getLocation().getLongitude());
+        }
+
+        GetDatabase().insertOrThrow(GetTableName(), null, values);
     }
 
     @Override
-    protected void PersistUpdatedItem(Order entity) {
+    protected void PersistUpdatedItem(OrderDoc entity) {
         ContentValues values = new ContentValues();
         values.put(OrderFactory.FieldNames.Number, entity.getNumber());
         values.put(OrderFactory.FieldNames.Date, entity.getDate().getTime());
         values.put(OrderFactory.FieldNames.Type, entity.getType().getValue());
         values.put(OrderFactory.FieldNames.State, entity.getState().getValue());
-        values.put(OrderFactory.FieldNames.Customer, (int)entity.getCustomer().getKey());
-        values.put(OrderFactory.FieldNames.LocationLatitude, entity.getLocation().getLatitude());
-        values.put(OrderFactory.FieldNames.LocationLongitude, entity.getLocation().getLongitude());
+        if(entity.getCustomer() != null){
+            values.put(OrderFactory.FieldNames.Customer, (int)entity.getCustomer().getKey());
+        }
+        if(entity.getLocation() != null) {
+            values.put(OrderFactory.FieldNames.LocationLatitude, entity.getLocation().getLatitude());
+            values.put(OrderFactory.FieldNames.LocationLongitude, entity.getLocation().getLongitude());
+        }
 
         GetDatabase().update(GetTableName(), values, "_id = ?", new String[]{entity.getKey().toString()});
     }
 
     @Override
     protected int GetTableVersion() {
-        return 1;
+        return 2;
     }
 
     @Override
     protected IEntityFactoryBuilder GetEntityFactoryBuilder() {
         return new EntityFactoryBuilder();
+    }
+
+    public List<OrderDoc> FindOrdersByNumber(String number){
+        return BuildEntitiesFromSql(String.format("%1$s WHERE Number = \"%2$s\"", GetBaseQuery(), number));
     }
 }

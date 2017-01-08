@@ -1,4 +1,4 @@
-package easysales.agent.Entities;
+package com.easysales.agent.Entities;
 
 import android.location.Location;
 
@@ -11,10 +11,17 @@ public class Customer extends Entity {
     private String name;
     private Location location;
 
-    public Customer(Object key){
-        super(key);
+    public Customer() {this(null);}
+
+    public Customer(Object key) {
+        this(key, "", null);
     }
 
+    public Customer(Object key, String name, Location location){
+        super(key);
+        this.name = name;
+        this.location = location;
+    }
     public String getName() {
         return name;
     }

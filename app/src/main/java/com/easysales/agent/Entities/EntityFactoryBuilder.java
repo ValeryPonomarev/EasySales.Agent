@@ -1,4 +1,4 @@
-package easysales.agent.Entities;
+package com.easysales.agent.Entities;
 
 import easysales.androidorm.Entity.IEntityFactory;
 import easysales.androidorm.Entity.IEntityFactoryBuilder;
@@ -11,8 +11,10 @@ public class EntityFactoryBuilder implements IEntityFactoryBuilder {
     public IEntityFactory GetFactory(String s) {
         switch (s)
         {
-            case "Order":
+            case "OrderDoc":
                 return new OrderFactory();
+            case "Customer":
+                return new CustomerFactory();
         }
 
         throw new IllegalArgumentException("Фабрика " + s + " отсутствует в словаре");

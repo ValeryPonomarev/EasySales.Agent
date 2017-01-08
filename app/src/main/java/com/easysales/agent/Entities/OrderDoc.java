@@ -1,8 +1,8 @@
-package easysales.agent.Entities;
+package com.easysales.agent.Entities;
 
 import android.location.Location;
-import android.os.Parcel;
 
+import java.util.Calendar;
 import java.util.Date;
 
 import easysales.androidorm.Entity.Entity;
@@ -10,7 +10,7 @@ import easysales.androidorm.Entity.Entity;
 /**
  * Created by drmiller on 16.12.2016.
  */
-public class Order extends Entity {
+public class OrderDoc extends Entity {
 
     private String number;
     private Date date;
@@ -19,8 +19,20 @@ public class Order extends Entity {
     private Customer customer;
     private Location location;
 
-    public Order(Object key) {
+    public OrderDoc() {this(null);}
+
+    public OrderDoc(Object key) {
+        this(key, "", new Date(Calendar.getInstance().getTimeInMillis()), OrderType.Bid, OrderState.NoState, null, null);
+    }
+
+    public OrderDoc(Object key, String number, Date date, OrderType type, OrderState state, Customer customer, Location location){
         super(key);
+        this.number = number;
+        this.date = date;
+        this.type = type;
+        this.state = state;
+        this.customer = customer;
+        this.location = location;
     }
 
     public String getNumber() {

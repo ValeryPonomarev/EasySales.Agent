@@ -17,12 +17,14 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.easysales.agent.R;
+import com.easysales.agent.UI.BaseFragment;
+
 /**/
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private DrawerLayout drawer;
-    private Fragment currentFragment;
+    private BaseFragment currentFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +38,7 @@ public class MainActivity extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                currentFragment.MainAction();
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
@@ -121,7 +124,7 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
-    private void OpenFragment(Fragment fragment)
+    private void OpenFragment(BaseFragment fragment)
     {
         getSupportFragmentManager().beginTransaction().replace(R.id.content_main, fragment).commit();
         currentFragment = fragment;

@@ -37,6 +37,6 @@ public class OrderCursorAdapter extends BaseEntityCursorAdapter<OrderDoc> {
 
     @Override
     protected OrderDoc BuildEntity(Cursor cursor) {
-        return (OrderDoc)entityFactoryBuilder.GetFactory("Customer").BuildEntity(cursor);
+        return (OrderDoc)entityFactoryBuilder.GetFactory("OrderDoc").BuildEntity(cursor);
     }
 }

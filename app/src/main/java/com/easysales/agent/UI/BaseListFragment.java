@@ -1,6 +1,7 @@
-package com.easysales.agent.Activities;
+package com.easysales.agent.UI;
 
 
+import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -11,15 +12,14 @@ import android.widget.GridView;
 import android.widget.Toast;
 
 import com.easysales.agent.Data.BaseEntityCursorAdapter;
-import com.easysales.agent.Data.CustomerCursorAdapter;
-import com.easysales.agent.Entities.Customer;
 import com.easysales.agent.R;
-import com.easysales.agent.Repositories.RepositoryFactory;
+
+import easysales.androidorm.Repository.IRepository;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public abstract class BaseListFragment extends Fragment {
+public abstract class BaseListFragment extends BaseFragment {
     protected BaseEntityCursorAdapter adapter;
 
     public BaseListFragment() {
@@ -27,6 +27,7 @@ public abstract class BaseListFragment extends Fragment {
     }
 
     protected abstract BaseEntityCursorAdapter GetAdapter();
+    protected abstract IRepository GetRepository();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -44,6 +45,10 @@ public abstract class BaseListFragment extends Fragment {
         });
 
         return view;
+    }
+
+    public void Refresh(){
+        adapter.changeCursor(GetRepository().FindAll());
     }
 
     protected int GetLayoutId(){

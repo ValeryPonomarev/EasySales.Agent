@@ -1,13 +1,12 @@
 package com.easysales.agent.Activities;
 
 
+import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.GridView;
 import android.widget.Toast;
 
 import com.easysales.agent.Data.BaseEntityCursorAdapter;
@@ -15,20 +14,35 @@ import com.easysales.agent.Data.CustomerCursorAdapter;
 import com.easysales.agent.Entities.Customer;
 import com.easysales.agent.R;
 import com.easysales.agent.Repositories.RepositoryFactory;
+import com.easysales.agent.UI.BaseListFragment;
+
+import easysales.androidorm.Repository.IRepository;
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class CustomerListFragment extends BaseListFragment {
 
-    private CustomerCursorAdapter adapter;
-
     public CustomerListFragment() {
     }
 
     @Override
+    public void MainAction() {
+        Customer customer = new Customer();
+        customer.setName(getString(R.string.newCustomerName));
+        GetRepository().Add(customer);
+        Refresh();
+        Toast.makeText(getContext(), "MainAction", Toast.LENGTH_LONG).show();
+    }
+
+    @Override
     protected BaseEntityCursorAdapter GetAdapter() {
-        return new CustomerCursorAdapter(getActivity(), RepositoryFactory.GetRepository(getContext(), RepositoryFactory.RepositoryNames.CUSTOMER_REPOSITORY).FindAll(), 0);
+        return new CustomerCursorAdapter(getActivity(), GetRepository().FindAll(), 0);
+    }
+
+    @Override
+    protected IRepository GetRepository() {
+        return RepositoryFactory.GetRepository(getContext(), RepositoryFactory.RepositoryNames.CUSTOMER_REPOSITORY);
     }
 
     @Override

@@ -1,4 +1,4 @@
-package com.easysales.agent.Data;
+package com.easysales.androidui.Data;
 
 import android.content.Context;
 import android.database.Cursor;
@@ -7,7 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.easysales.agent.R;
+import com.easysales.androidui.R;
 
 import easysales.androidorm.Entity.Entity;
 

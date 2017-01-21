@@ -5,7 +5,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
-import android.support.v4.app.Fragment;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -17,7 +16,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.easysales.agent.R;
-import com.easysales.agent.UI.BaseFragment;
+import com.easysales.agent.Serivces.OrderDocService;
+import com.easysales.androidui.Fragment.BaseFragment;
 
 /**/
 public class MainActivity extends AppCompatActivity
@@ -91,12 +91,15 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_orders) {
+            //OpenOrder();
             OpenOrderList();
         }
         else if(id == R.id.nav_customers){
             OpenCustomerList();
         }
 
+        item.setChecked(true);
+        setTitle(item.getTitle());
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
@@ -110,6 +113,14 @@ public class MainActivity extends AppCompatActivity
     private void OpenCustomerList()
     {
         CustomerListFragment fragment = new CustomerListFragment();
+        OpenFragment(fragment);
+    }
+
+    private void OpenOrder() {
+        OrderFragment fragment = new OrderFragment();
+        Bundle arg = new Bundle();
+        arg.putParcelable("Order", OrderDocService.GetTestOrderDoc());
+        fragment.setArguments(arg);
         OpenFragment(fragment);
     }
 

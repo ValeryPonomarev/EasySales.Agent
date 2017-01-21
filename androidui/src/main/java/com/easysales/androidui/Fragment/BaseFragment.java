@@ -1,4 +1,4 @@
-package com.easysales.agent.UI;
+package com.easysales.androidui.Fragment;
 
 import android.support.v4.app.Fragment;
 

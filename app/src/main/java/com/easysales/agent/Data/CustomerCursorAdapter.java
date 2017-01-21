@@ -3,14 +3,12 @@ package com.easysales.agent.Data;
 import android.content.Context;
 import android.database.Cursor;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.easysales.agent.Entities.Customer;
 import com.easysales.agent.Entities.EntityFactoryBuilder;
 import com.easysales.agent.R;
-import com.easysales.agent.Repositories.CustomerRepository;
-import com.easysales.agent.Repositories.RepositoryFactory;
+import com.easysales.androidui.Data.BaseEntityCursorAdapter;
 
 import easysales.androidorm.Entity.IEntityFactoryBuilder;
 

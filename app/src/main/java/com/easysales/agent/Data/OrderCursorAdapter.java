@@ -5,10 +5,10 @@ import android.database.Cursor;
 import android.view.View;
 import android.widget.TextView;
 
-import com.easysales.agent.Entities.Customer;
 import com.easysales.agent.Entities.EntityFactoryBuilder;
 import com.easysales.agent.Entities.OrderDoc;
 import com.easysales.agent.R;
+import com.easysales.androidui.Data.BaseEntityCursorAdapter;
 
 import easysales.androidorm.Entity.IEntityFactoryBuilder;
 

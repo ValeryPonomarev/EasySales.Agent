@@ -1,0 +1,25 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".MainActivity">
+
+    <item
+        android:id="@+id/fCustomer_action_remove"
+        android:actionViewClass="android.support.v7.widget.SearchView"
+        android:icon="?attr/actionModeShareDrawable"
+        android:title="Удалить"
+        app:showAsAction="ifRoom" />
+
+    <item android:id="@+id/fCustomer_action_add"
+        android:title="Добавить"
+        android:icon="?attr/actionModeShareDrawable"
+        android:orderInCategory="200"
+        app:showAsAction="ifRoom" />
+
+    <item android:title="Связатся"
+        android:icon="?attr/actionModeShareDrawable"
+        app:showAsAction="ifRoom"
+        android:id="@+id/fCustomer_action_communicate" />
+
+
+</menu>

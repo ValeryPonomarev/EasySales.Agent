@@ -1,0 +1,110 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.easysales.agent.Activities.OrderFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:weightSum="1">
+
+        <TextView
+            style="@style/MyEditor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/fOrder_Number"
+            android:textSize="18sp"
+            android:textStyle="normal|bold"
+            android:gravity="center_vertical"
+            android:textAllCaps="false"
+            android:text="Заказ №1" />
+
+        <LinearLayout
+            style="@style/MyEditor"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:text="Контрагент"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/fOrder_Customer"
+                android:layout_weight="1" />
+
+            <Spinner
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/fOrder_CustomerEdit"
+                android:spinnerMode="dialog"
+                android:layout_weight="1"/>
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/MyEditor"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:text="Дата"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/fOrder_Date"
+                android:layout_weight="1" />
+
+            <Spinner
+                android:layout_width="match_parent"
+                android:id="@+id/fOrder_DateEdit"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:spinnerMode="dialog" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/MyEditor"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:text="Сумма"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/fOrder_Sum"
+                android:layout_weight="1" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal"
+                android:ems="10"
+                android:id="@+id/fOrder_SumEdit"
+                android:layout_weight="1"
+                tools:text="0"
+                android:singleLine="false" />
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/fOrder_NomenclatureList"
+            android:textSize="18sp"
+            android:textStyle="normal|bold"
+            android:gravity="center_vertical"
+            android:textAllCaps="false"
+            android:text="Номенклатура"
+            android:paddingLeft="15dp" />
+
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </LinearLayout>
+</FrameLayout>

@@ -1,1 +1,1 @@
-include ':app', ':AnroidORM'
+include ':app', ':AnroidORM', ':androidui'

@@ -6,18 +6,18 @@
             android:id="@+id/nav_orders"
             android:icon="@drawable/ic_menu_camera"
             android:title="@string/Orders" />
-        <item
-            android:id="@+id/nav_bids"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="@string/Bids" />
-        <item
-            android:id="@+id/nav_returns"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="@string/Returns" />
-        <item
-            android:id="@+id/nav_totals"
-            android:icon="@drawable/ic_menu_manage"
-            android:title="@string/Totals" />
+        <!--<item-->
+            <!--android:id="@+id/nav_bids"-->
+            <!--android:icon="@drawable/ic_menu_gallery"-->
+            <!--android:title="@string/Bids" />-->
+        <!--<item-->
+            <!--android:id="@+id/nav_returns"-->
+            <!--android:icon="@drawable/ic_menu_slideshow"-->
+            <!--android:title="@string/Returns" />-->
+        <!--<item-->
+            <!--android:id="@+id/nav_totals"-->
+            <!--android:icon="@drawable/ic_menu_manage"-->
+            <!--android:title="@string/Totals" />-->
     </group>
 
     <item android:title="@string/Settings">
@@ -26,10 +26,10 @@
                 android:id="@+id/nav_customers"
                 android:icon="@drawable/ic_menu_share"
                 android:title="@string/Customers" />
-            <item
-                android:id="@+id/nav_nomenclatures"
-                android:icon="@drawable/ic_menu_send"
-                android:title="@string/Nomenclatures" />
+            <!--<item-->
+                <!--android:id="@+id/nav_nomenclatures"-->
+                <!--android:icon="@drawable/ic_menu_send"-->
+                <!--android:title="@string/Nomenclatures" />-->
         </menu>
     </item>
 

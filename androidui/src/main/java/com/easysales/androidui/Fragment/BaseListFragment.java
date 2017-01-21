@@ -1,25 +1,28 @@
-package com.easysales.agent.UI;
+package com.easysales.androidui.Fragment;
 
 
-import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.Toast;
 
-import com.easysales.agent.Data.BaseEntityCursorAdapter;
-import com.easysales.agent.R;
+import com.easysales.androidui.Data.BaseEntityCursorAdapter;
+import com.easysales.androidui.R;
 
 import easysales.androidorm.Repository.IRepository;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public abstract class BaseListFragment extends BaseFragment {
+public abstract class BaseListFragment extends BaseFragment
+    implements AdapterView.OnItemClickListener {
     protected BaseEntityCursorAdapter adapter;
 
     public BaseListFragment() {
@@ -35,20 +38,34 @@ public abstract class BaseListFragment extends BaseFragment {
         GridView gridView = (GridView)view.findViewById(GetGridViewId());
         adapter = GetAdapter();
         gridView.setAdapter(adapter);
-
-        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(getContext(), "Your action", Toast.LENGTH_LONG).show();
-            }
-        });
+        gridView.setOnItemClickListener(this);
 
         return view;
     }
 
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+        MenuInflater inflater = getActivity().getMenuInflater();
+        inflater.inflate(R.menu.fragment_list_context_menu, menu);
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.fragment_list_menu, menu);
+    }
+
     public void Refresh(){
         adapter.changeCursor(GetRepository().FindAll());
+    }
+
+    public void Add(){
+
+    }
+
+    public void Delete(){
+
     }
 
     protected int GetLayoutId(){

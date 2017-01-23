@@ -1,0 +1,17 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".MainActivity">
+
+    <item android:title="Связатся"
+        android:icon="?attr/actionModeShareDrawable"
+        app:showAsAction="ifRoom"
+        android:id="@+id/fCustomerlist_menuitem_communicate" />
+
+    <item android:title="Создать документ"
+        android:icon="?attr/actionModeShareDrawable"
+        app:showAsAction="ifRoom"
+        android:id="@+id/fCustomer_menuitem_createDoc" />
+
+
+</menu>

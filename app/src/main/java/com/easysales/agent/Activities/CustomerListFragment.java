@@ -3,6 +3,7 @@ package com.easysales.agent.Activities;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.PopupMenu;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -19,6 +20,7 @@ import com.easysales.agent.R;
 import com.easysales.agent.Repositories.RepositoryFactory;
 import com.easysales.androidui.Fragment.BaseListFragment;
 
+import easysales.androidorm.Entity.Entity;
 import easysales.androidorm.Repository.IRepository;
 
 /**
@@ -38,15 +40,6 @@ public class CustomerListFragment extends BaseListFragment {
     }
 
     @Override
-    public void MainAction() {
-        Customer customer = new Customer();
-        customer.setName(getString(R.string.newCustomerName));
-        GetRepository().Add(customer);
-        Refresh();
-        Toast.makeText(getContext(), "MainAction", Toast.LENGTH_LONG).show();
-    }
-
-    @Override
     protected BaseEntityCursorAdapter GetAdapter() {
         return new CustomerCursorAdapter(getActivity(), GetRepository().FindAll(), 0);
     }
@@ -57,6 +50,13 @@ public class CustomerListFragment extends BaseListFragment {
     }
 
     @Override
+    protected Entity CreateNewEntity() {
+        Customer customer = new Customer();
+        customer.setName(getString(R.string.newCustomerName));
+        return customer;
+    }
+
+    @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
     }
@@ -64,5 +64,12 @@ public class CustomerListFragment extends BaseListFragment {
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         Toast.makeText(getContext(), adapter.getItem(position).toString(), Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    protected PopupMenu GetListItemPopupMenu(View view, int position) {
+        PopupMenu popupMenu = super.GetListItemPopupMenu(view, position);
+        popupMenu.inflate(R.menu.fcustomerlist_popup);
+        return popupMenu;
     }
 }
